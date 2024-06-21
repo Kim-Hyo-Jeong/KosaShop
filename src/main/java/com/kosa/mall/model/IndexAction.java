@@ -15,15 +15,11 @@ public class IndexAction implements Action {
 		String url = "/index.jsp";
 
 		ProductDAO productDAO;
-		try {
-			productDAO = new ProductDAO();
-			ArrayList<Product> prodList = productDAO.listNewProduct();
-			request.setAttribute("newProductList", prodList);
+		productDAO = new ProductDAO();
+		ArrayList<Product> prodList = productDAO.listNewProduct();
+		request.setAttribute("newProductList", prodList);
 
-			RequestDispatcher dispatcher = request.getRequestDispatcher(url);
-			dispatcher.forward(request, response);
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
-		}
+		RequestDispatcher dispatcher = request.getRequestDispatcher(url);
+		dispatcher.forward(request, response);
 	}
 }

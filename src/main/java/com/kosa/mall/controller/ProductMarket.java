@@ -4,14 +4,13 @@ import java.io.IOException;
 
 import com.kosa.mall.model.Action;
 import com.kosa.mall.model.IndexAction;
+import com.kosa.mall.model.ProductDetailAction;
 
 import jakarta.servlet.ServletException;
-import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-// @WebServlet("/ProductMarket")
 public class ProductMarket extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -20,6 +19,12 @@ public class ProductMarket extends HttpServlet {
 
 		String command = request.getParameter("command");
 		Action action = new IndexAction();
+
+		if ("index".equals(command)) {
+			action = new IndexAction();
+		} else if ("product_detail".equals(command)) {
+			action = new ProductDetailAction();
+		}
 
 		if (action != null) {
 			action.execute(request, response);
