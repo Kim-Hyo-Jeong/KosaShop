@@ -6,9 +6,14 @@ body {
 	background-color: #f5f5f5;
 }
 
+.img-size {
+    width: 50%;
+    height: auto;
+}
+
 #front {
 	padding: 20px;
-	max-width: 1200px;
+	max-width: 1400px;
 	margin: 0 auto;
 	background-color: #fff;
 	border-radius: 10px;
