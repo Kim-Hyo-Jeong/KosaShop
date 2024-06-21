@@ -4,26 +4,30 @@ import java.io.IOException;
 
 import com.kosa.mall.model.Action;
 import com.kosa.mall.model.IndexAction;
-import com.kosa.mall.model.ProductDetailAction;
+import com.kosa.mall.model.LoginAction;
+import com.kosa.mall.model.LoginFormAction;
 
 import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
+@WebServlet
 public class ProductMarket extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-
 		String command = request.getParameter("command");
-		Action action = new IndexAction();
+		Action action = null;
 
 		if ("index".equals(command)) {
 			action = new IndexAction();
-		} else if ("product_detail".equals(command)) {
-			action = new ProductDetailAction();
+		} else if ("login_form".equals(command)) {
+			action = new LoginFormAction();
+		} else if ("login".equals(command)) {
+			action = new LoginAction();
 		}
 
 		if (action != null) {

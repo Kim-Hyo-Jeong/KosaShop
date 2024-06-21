@@ -19,4 +19,24 @@
     <servlet-name>ProductMarket</servlet-name>
     <url-pattern>/ProductMarket</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>LoginFormAction</display-name>
+    <servlet-name>LoginFormAction</servlet-name>
+    <servlet-class>com.kosa.mall.model.LoginFormAction</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>LoginFormAction</servlet-name>
+    <url-pattern>/LoginFormAction</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>LoginAction</display-name>
+    <servlet-name>LoginAction</servlet-name>
+    <servlet-class>com.kosa.mall.model.LoginAction</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>LoginAction</servlet-name>
+    <url-pattern>/LoginAction</url-pattern>
+  </servlet-mapping>
 </web-app>

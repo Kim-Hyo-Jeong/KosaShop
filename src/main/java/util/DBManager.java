@@ -12,6 +12,7 @@ public class DBManager {
 	private static String uid = "ace";
 	private static String pwd = "me";
 
+
 	public static Connection getConnection() {
 		Connection conn = null;
 		try {
