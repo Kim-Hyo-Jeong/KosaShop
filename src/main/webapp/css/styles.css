@@ -1,9 +1,27 @@
 /* 전체 레이아웃 스타일 */
 body {
-	font-family: Arial, sans-serif;
+	font-family: D2Coding, Arial, sans-serif;
 	margin: 0;
 	padding: 0;
-	background-color: #f5f5f5;
+	background-color: rgb(246, 245, 242);
+}
+
+#wrap{
+    width:971px; /* 각 웹 페이지 크기에 맞게 사이즈 조정 */
+    text-align:left;
+    margin:0;
+    margin-right:auto;
+    margin-left:auto;
+    background-repeat:repeat-y;    
+    min-height:780px;
+}
+
+#main_img {
+	text-align: center;
+}
+
+.half-size {
+	width: 50%;
 }
 
 #front {
@@ -115,51 +133,33 @@ h2 {
 	border-radius: 5px;
 }
 
-/* 제품 상세 페이지 스타일 */
-#productDetail {
-    text-align: center;
+a.product-link {
+	text-decoration: none;
+	color: inherit;
+	display: block;
+	border: 1px solid #ddd;
+	padding: 10px;
+	margin: 10px;
+	border-radius: 8px;
+	transition: box-shadow 0.3s ease-in-out;
 }
 
-#productDetail img {
-    width: 300px;
-    height: auto;
-    margin: 20px 0;
+a.product-link:hover {
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
-#productDetail h2 {
-    font-size: 24px;
-    margin: 20px 0;
+a.product-link img {
+	width: 100%;
+	border-radius: 8px 8px 0 0;
 }
 
-#productDetail p {
-    font-size: 20px;
-    color: #333;
+a.product-link h3 {
+	margin: 10px 0;
+	font-size: 1.2em;
 }
 
-#productDetail form {
-    margin: 20px 0;
-}
-
-#productDetail label {
-    font-size: 16px;
-    margin-right: 10px;
-}
-
-#productDetail input[type="number"] {
-    width: 50px;
-    padding: 5px;
-    margin-right: 10px;
-}
-
-#productDetail button {
-    padding: 10px 20px;
-    background-color: #333;
-    color: #fff;
-    border: none;
-    cursor: pointer;
-    transition: background-color 0.2s;
-}
-
-#productDetail button:hover {
-    background-color: #555;
+a.product-link p {
+	color: #555;
+	font-size: 1em;
+	margin-bottom: 10px;
 }
