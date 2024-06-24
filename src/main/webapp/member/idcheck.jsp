@@ -18,7 +18,7 @@ body{
 h1 {
   font-family: "D2Coding", Times, serif;
   font-size: 45px;
-  color: #CCC;
+  color: black;
   font-weight: normal;
 }
 input[type=button], input[type=submit] {

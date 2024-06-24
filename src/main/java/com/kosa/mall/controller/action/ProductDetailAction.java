@@ -2,8 +2,8 @@ package com.kosa.mall.controller.action;
 
 import java.io.IOException;
 
-import com.kosa.mall.model.Product;
-import com.kosa.mall.model.ProductDAO;
+import com.kosa.mall.dao.ProductDAO;
+import com.kosa.mall.dto.ProductVO;
 
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
@@ -18,7 +18,7 @@ public class ProductDetailAction implements Action {
 		String pseq = request.getParameter("prod_no").trim();
 
 		ProductDAO productDAO = new ProductDAO();
-		Product productVO = productDAO.getProduct(pseq);
+		ProductVO productVO = productDAO.getProduct(pseq);
 		request.setAttribute("productVO", productVO);
 
 		RequestDispatcher dispatcher = request.getRequestDispatcher(url);

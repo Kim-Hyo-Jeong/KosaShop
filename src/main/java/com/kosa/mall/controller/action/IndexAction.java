@@ -3,8 +3,8 @@ package com.kosa.mall.controller.action;
 import java.io.IOException;
 import java.util.ArrayList;
 
-import com.kosa.mall.model.Product;
-import com.kosa.mall.model.ProductDAO;
+import com.kosa.mall.dao.ProductDAO;
+import com.kosa.mall.dto.ProductVO;
 
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
@@ -28,7 +28,7 @@ public class IndexAction implements Action {
 
 		ProductDAO productDAO;
 		productDAO = new ProductDAO();
-		ArrayList<Product> prodList = productDAO.listNewProduct(page, pageSize);
+		ArrayList<ProductVO> prodList = productDAO.listNewProduct(page, pageSize);
 		int totalProducts = productDAO.getTotalProducts();
 		int totalPages = (int) Math.ceil((double) totalProducts / pageSize);
 

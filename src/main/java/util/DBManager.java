@@ -6,7 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import com.kosa.mall.model.Product;
+import com.kosa.mall.dto.ProductVO;
 
 public class DBManager {
 
@@ -26,11 +26,11 @@ public class DBManager {
 		return conn;
 	}
 
-	public static Product getProductById(String prodNo) {
+	public static ProductVO getProductById(String prodNo) {
 	    Connection conn = null;
 	    PreparedStatement pstmt = null;
 	    ResultSet rset = null;
-	    Product product = null;
+	    ProductVO product = null;
 
 	    try {
 	        conn = getConnection();
@@ -45,7 +45,7 @@ public class DBManager {
 	            double prodPrice = rset.getDouble("prod_price");
 	            String imageUrl = rset.getString("image_url");
 
-	            product = new Product(prodNoInt, prodName, prodPrice, imageUrl);
+	            product = new ProductVO(prodNoInt, prodName, prodPrice, imageUrl);
 	        }
 	    } catch (SQLException e) {
 	        e.printStackTrace();

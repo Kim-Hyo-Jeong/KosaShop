@@ -3,11 +3,11 @@
 <%@ include file="../header.jsp"%>
 
 <article>
-    <h1>Item</h1>
+    <h1>물품</h1>
     <div id="itemdetail">
         <form method="post" name="formm" id="productForm">
             <fieldset>
-                <legend> Item detail Info</legend>
+                <legend>상세정보</legend>
                 <a href="ProductMarket?command=product_detail&prod_no=${productVO.prodNo}">
                     <span style="float: left;">
                         <img src="https://picsum.photos/id/${productVO.imageUrl}/300" />

@@ -3,6 +3,9 @@ package com.kosa.mall.controller.action;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import com.kosa.mall.dao.AddressDAO;
+import com.kosa.mall.dto.AddressVO;
+
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;

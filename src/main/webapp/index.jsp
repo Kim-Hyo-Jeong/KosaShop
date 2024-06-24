@@ -18,7 +18,7 @@
 
 <body>
 	<div id="front">
-		<h2>New Item</h2>
+		<h2>신상품</h2>
 		<div id="bestProduct">
 			<c:forEach items="${newProductList}" var="product">
 				<div id="item">

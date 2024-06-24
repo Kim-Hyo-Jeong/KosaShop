@@ -1,13 +1,13 @@
-package com.kosa.mall.model;
+package com.kosa.mall.dto;
 
-public class CartItem {
+public class CartVO {
     private String productId;
     private String prodName;
     private double prodPrice;
     private int quantity;
     private String imageUrl;
 
-    public CartItem(String productId, String prodName, double prodPrice, int quantity, String imageUrl) {
+    public CartVO(String productId, String prodName, double prodPrice, int quantity, String imageUrl) {
         this.productId = productId;
         this.prodName = prodName;
         this.prodPrice = prodPrice;

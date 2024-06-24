@@ -3,8 +3,8 @@ package com.kosa.mall.controller.action;
 import java.io.IOException;
 import java.util.Map;
 
-import com.kosa.mall.model.Cart;
-import com.kosa.mall.model.CartItem;
+import com.kosa.mall.dao.CartDAO;
+import com.kosa.mall.dto.CartVO;
 
 //import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
@@ -21,9 +21,9 @@ public class CartListAction implements Action {
         // 세션에서 장바구니 정보 가져오기
         HttpSession session = request.getSession(false);
         if (session != null) {
-            Cart cart = (Cart) session.getAttribute("cart");
+            CartDAO cart = (CartDAO) session.getAttribute("cart");
             if (cart != null) {
-                Map<String, CartItem> cartItems = cart.getItems();
+                Map<String, CartVO> cartItems = cart.getItems();
                 double totalAmount = calculateTotalAmount(cartItems); // 총 금액 계산
                 
                 request.setAttribute("cartItems", cartItems);
@@ -35,10 +35,10 @@ public class CartListAction implements Action {
         request.getRequestDispatcher("/cart_list.jsp").forward(request, response);
     }
 	
-	private double calculateTotalAmount(Map<String, CartItem> cartItems) {
+	private double calculateTotalAmount(Map<String, CartVO> cartItems) {
         double total = 0.0;
 
-        for (CartItem item : cartItems.values()) {
+        for (CartVO item : cartItems.values()) {
             total += item.getProdPrice() * item.getQuantity();
         }
 

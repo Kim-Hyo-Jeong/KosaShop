@@ -1,7 +1,7 @@
 package com.kosa.mall.controller.action;
 
-import com.kosa.mall.model.Cart;
-import com.kosa.mall.model.CartItem;
+import com.kosa.mall.dao.CartDAO;
+import com.kosa.mall.dto.CartVO;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -15,10 +15,10 @@ public class RemoveFromCartAction implements Action {
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws IOException {
         HttpSession session = request.getSession();
-        Cart cart = (Cart) session.getAttribute("cart");
+        CartDAO cart = (CartDAO) session.getAttribute("cart");
 
         if (cart == null) {
-            cart = new Cart();
+            cart = new CartDAO();
             session.setAttribute("cart", cart);
         }
 
@@ -41,9 +41,9 @@ public class RemoveFromCartAction implements Action {
         response.getWriter().write(jsonResponse);
     }
 
-    private double calculateTotalAmount(Map<String, CartItem> cartItems) {
+    private double calculateTotalAmount(Map<String, CartVO> cartItems) {
         double total = 0.0;
-        for (CartItem item : cartItems.values()) {
+        for (CartVO item : cartItems.values()) {
             total += item.getProdPrice() * item.getQuantity();
         }
         return total;

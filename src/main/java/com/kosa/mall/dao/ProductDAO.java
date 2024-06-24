@@ -1,4 +1,4 @@
-package com.kosa.mall.model;
+package com.kosa.mall.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -6,13 +6,15 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import com.kosa.mall.dto.ProductVO;
+
 import util.DBManager;
 
 public class ProductDAO {
 
 	// 페이지네이션이 추가된 제품 리스트를 조회하는 메서드
-	public ArrayList<Product> listNewProduct(int page, int pageSize) {
-		ArrayList<Product> productList = new ArrayList<>();
+	public ArrayList<ProductVO> listNewProduct(int page, int pageSize) {
+		ArrayList<ProductVO> productList = new ArrayList<>();
 		String sql = "SELECT * FROM ( " + "SELECT p.*, ROWNUM rnum FROM ( " + "SELECT * FROM products ORDER BY prod_no "
 				+ ") p WHERE ROWNUM <= ? " + ") WHERE rnum > ?";
 
@@ -28,7 +30,7 @@ public class ProductDAO {
 					double prodPrice = rs.getDouble("prod_price");
 					String imageUrl = rs.getString("image_url");
 
-					Product product = new Product(prodNo, prodName, prodPrice, imageUrl);
+					ProductVO product = new ProductVO(prodNo, prodName, prodPrice, imageUrl);
 					productList.add(product);
 				}
 			}
@@ -58,8 +60,8 @@ public class ProductDAO {
 	}
 
 	// 주어진 상품 번호(prodNo)에 해당하는 상품 정보를 데이터베이스에서 조회하여 Product 객체로 반환하는 메서드
-	public Product getProduct(String prodNo) {
-		Product product = null;
+	public ProductVO getProduct(String prodNo) {
+		ProductVO product = null;
 		String sql = "SELECT * FROM products WHERE prod_no = ?";
 
 		Connection conn = null;
@@ -72,7 +74,7 @@ public class ProductDAO {
 			pstmt.setString(1, prodNo);
 			rs = pstmt.executeQuery();
 			if (rs.next()) {
-				product = new Product();
+				product = new ProductVO();
 				product.setProdNo(rs.getInt("prod_no"));
 				product.setProdName(rs.getString("prod_name"));
 				product.setProdPrice(rs.getInt("prod_price"));

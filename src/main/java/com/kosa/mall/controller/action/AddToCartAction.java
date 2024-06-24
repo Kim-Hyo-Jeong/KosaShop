@@ -4,8 +4,8 @@ package com.kosa.mall.controller.action;
 
 import java.io.IOException;
 
-import com.kosa.mall.model.Cart;
-import com.kosa.mall.model.Product;
+import com.kosa.mall.dao.CartDAO;
+import com.kosa.mall.dto.ProductVO;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -29,11 +29,11 @@ public class AddToCartAction implements Action {
 	    // 로그인된 경우에만 장바구니에 제품 추가 로직 수행
 	    String prodNo = request.getParameter("prodNo");
 	    int quantity = Integer.parseInt(request.getParameter("quantity"));
-	    Product product = DBManager.getProductById(prodNo);
+	    ProductVO product = DBManager.getProductById(prodNo);
 
-	    Cart cart = (Cart) session.getAttribute("cart");
+	    CartDAO cart = (CartDAO) session.getAttribute("cart");
 	    if (cart == null) {
-	        cart = new Cart();
+	        cart = new CartDAO();
 	        session.setAttribute("cart", cart);
 	    }
 

@@ -1,25 +1,27 @@
-package com.kosa.mall.model;
+package com.kosa.mall.dao;
 
 import java.util.HashMap;
 import java.util.Map;
 
-public class Cart {
-    private Map<String, CartItem> items;
+import com.kosa.mall.dto.CartVO;
 
-    public Cart() {
+public class CartDAO {
+    private Map<String, CartVO> items;
+
+    public CartDAO() {
         items = new HashMap<>();
     }
 
-    public Map<String, CartItem> getItems() {
+    public Map<String, CartVO> getItems() {
         return items;
     }
 
     public void addProduct(String productId, String prodName, double prodPrice, int quantity, String imageUrl) {
         if (items.containsKey(productId)) {
-            CartItem item = items.get(productId);
+            CartVO item = items.get(productId);
             item.setQuantity(item.getQuantity() + quantity);
         } else {
-            CartItem newItem = new CartItem(productId, prodName, prodPrice, quantity, imageUrl);
+            CartVO newItem = new CartVO(productId, prodName, prodPrice, quantity, imageUrl);
             items.put(productId, newItem);
         }
     }
@@ -30,7 +32,7 @@ public class Cart {
 
     public void updateQuantity(String productId, int quantity) {
         if (items.containsKey(productId)) {
-            CartItem item = items.get(productId);
+            CartVO item = items.get(productId);
             item.setQuantity(quantity);
         }
     }

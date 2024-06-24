@@ -1,17 +1,17 @@
-package com.kosa.mall.model;
+package com.kosa.mall.dto;
 
-public class Product {
+public class ProductVO {
     private int prodNo;
     private String prodName;
     private double prodPrice;
     private String imageUrl;
 
     // 기본 생성자
-    public Product() {
+    public ProductVO() {
     }
 
     // 매개변수를 갖는 생성자
-    public Product(int prodNo, String prodName, double prodPrice, String imageUrl) {
+    public ProductVO(int prodNo, String prodName, double prodPrice, String imageUrl) {
         this.prodNo = prodNo;
         this.prodName = prodName;
         this.prodPrice = prodPrice;
