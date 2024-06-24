@@ -1,4 +1,4 @@
-package com.kosa.mall.model;
+package com.kosa.mall.controller.action;
 
 import java.io.IOException;
 

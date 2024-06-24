@@ -1,7 +1,10 @@
-package com.kosa.mall.model;
+package com.kosa.mall.controller.action;
 
 import java.io.IOException;
 import java.util.ArrayList;
+
+import com.kosa.mall.model.Product;
+import com.kosa.mall.model.ProductDAO;
 
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;

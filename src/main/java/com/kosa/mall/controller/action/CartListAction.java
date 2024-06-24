@@ -1,7 +1,10 @@
-package com.kosa.mall.model;
+package com.kosa.mall.controller.action;
 
 import java.io.IOException;
 import java.util.Map;
+
+import com.kosa.mall.model.Cart;
+import com.kosa.mall.model.CartItem;
 
 //import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
@@ -21,12 +24,24 @@ public class CartListAction implements Action {
             Cart cart = (Cart) session.getAttribute("cart");
             if (cart != null) {
                 Map<String, CartItem> cartItems = cart.getItems();
+                double totalAmount = calculateTotalAmount(cartItems); // 총 금액 계산
+                
                 request.setAttribute("cartItems", cartItems);
+                request.setAttribute("totalAmount", totalAmount);
             }
         }
         
         // cart_list.jsp로 포워드
         request.getRequestDispatcher("/cart_list.jsp").forward(request, response);
     }
+	
+	private double calculateTotalAmount(Map<String, CartItem> cartItems) {
+        double total = 0.0;
 
+        for (CartItem item : cartItems.values()) {
+            total += item.getProdPrice() * item.getQuantity();
+        }
+
+        return total;
+    }
 }

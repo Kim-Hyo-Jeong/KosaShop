@@ -1,9 +1,11 @@
-package com.kosa.mall.model;
+package com.kosa.mall.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
+
+import com.kosa.mall.dto.MemberVO;
 
 import util.DBManager;
 
@@ -44,8 +46,8 @@ public class MemberDAO {
     return result;
   }
 
-  public Member getMember(String id) {       
-    Member memberVO= null;
+  public MemberVO getMember(String id) {       
+    MemberVO memberVO= null;
     String sql = "select * from member where id=?";
      
     Connection connn = null;
@@ -58,7 +60,7 @@ public class MemberDAO {
       pstmt.setString(1, id);
       rs = pstmt.executeQuery();
       if(rs.next()){
-        memberVO = new Member();
+        memberVO = new MemberVO();
         memberVO.setId(rs.getString("id"));
         memberVO.setPwd(rs.getString("pwd"));
         memberVO.setName(rs.getString("name"));
@@ -77,7 +79,7 @@ public class MemberDAO {
     return memberVO;
   }
 
-  public int insertMember(Member memberVO) {
+  public int insertMember(MemberVO memberVO) {
     int result = 0;
     String sql = "insert into member(id, pwd, name, zip_num,";
     sql += " address, phone) values(?, ?, ?, ?, ?, ?)";
@@ -106,8 +108,8 @@ public class MemberDAO {
 	/* *
 	 * 관리자 모드에서 사용되는 메소드 * *
 	 */
-	public ArrayList<Member> listMember(String member_name) {
-		ArrayList<Member> memberList = new ArrayList<Member>();
+	public ArrayList<MemberVO> listMember(String member_name) {
+		ArrayList<MemberVO> memberList = new ArrayList<MemberVO>();
 		String sql = "select * from member where name like '%'||?||'%' " +
 				"order by indate desc";
 
@@ -125,7 +127,7 @@ public class MemberDAO {
 			}
 			rs = pstmt.executeQuery();
 			while (rs.next()) {
-				Member memberVO = new Member();
+				MemberVO memberVO = new MemberVO();
 				memberVO.setId(rs.getString("id"));
 		        memberVO.setPwd(rs.getString("pwd"));
 		        memberVO.setName(rs.getString("name"));

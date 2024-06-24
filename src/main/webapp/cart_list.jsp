@@ -39,7 +39,7 @@
                                         <input type="hidden" name="command" value="update_cart">
                                         <input type="hidden" name="prodNo" value="${item.productId}">
                                         <input type="number" min="1" value="${item.quantity}" name="quantity_${item.productId}" id="quantity_${item.productId}">
-                                        <button type="button" onclick="updateQuantity('${item.productId}')">수정</button>
+                                        <button type="button" onclick="updateQuantity('${item.productId}', ${item.prodPrice})">수정</button>
                                         <span id="updated_${item.productId}" style="display: none;">수정 중...</span>
                                     </form>
                                 </td>
@@ -49,6 +49,11 @@
                                 </td>
                             </tr>
                         </c:forEach>
+                        <!-- 여기서 총 합계 행 추가 -->
+                        <tr>
+                            <td colspan="4" align="right"><strong>총 합계:</strong></td>
+                            <td colspan="2" align="center"><strong id="totalAmount">${totalAmount}</strong></td>
+                        </tr>
                     </tbody>
                 </table>
             </section>
@@ -58,7 +63,7 @@
         </div>
     </div>
     <script>
-        function updateQuantity(prodNo) {
+        function updateQuantity(prodNo, prodPrice) {
             var quantity = document.querySelector('input[name="quantity_' + prodNo + '"]').value;
 
             var xhr = new XMLHttpRequest();
@@ -67,9 +72,12 @@
 
             xhr.onload = function() {
                 if (xhr.status === 200) {
-                    // 수정이 성공했을 때 할 일
+                    var response = JSON.parse(xhr.responseText);
                     var total = document.getElementById('total_' + prodNo);
-                    total.textContent = quantity * parseFloat('${item.prodPrice}'); // 서버에서 전송한 새로운 가격으로 갱신
+                    total.textContent = response.newTotalPrice;
+
+                    // 총 합계 업데이트
+                    document.getElementById('totalAmount').textContent = response.totalAmount;
                 } else {
                     alert('수정에 실패했습니다. 다시 시도해 주세요.');
                 }
@@ -85,8 +93,12 @@
 
                 xhr.onload = function() {
                     if (xhr.status === 200) {
+                        var response = JSON.parse(xhr.responseText);
                         var row = document.getElementById('row_' + prodNo);
                         row.parentNode.removeChild(row); // 삭제된 행을 DOM에서 제거
+
+                        // 총 합계 업데이트
+                        document.getElementById('totalAmount').textContent = response.totalAmount;
                     } else {
                         alert('삭제에 실패했습니다. 다시 시도해 주세요.');
                     }

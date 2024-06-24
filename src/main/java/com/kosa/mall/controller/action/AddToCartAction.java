@@ -1,12 +1,11 @@
 // AddToCartAction.java
 
-package com.kosa.mall.model;
+package com.kosa.mall.controller.action;
 
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+
+import com.kosa.mall.model.Cart;
+import com.kosa.mall.model.Product;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
